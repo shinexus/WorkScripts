@@ -1,0 +1,37 @@
+门店存在异常流水请检查以下3项
+
+1.检查是否有未上传流水
+
+select saleno , sum(sale), sum(plu), sum(pay) from 
+(select saleno, sum(sstotal) as sale, 0 as plu, 0 as pay
+from tsalsale
+where orgcode ='2005' and trantype='1'
+and jzdate ='2013-10-09' 
+group by saleno
+ union all
+select saleno, 0 as sale, sum(sstotal) as plu, 0 as pay
+from tsalsaleplu plu
+where orgcode ='2005' and trantype='1' and packtype<>'2'
+and exists(select 1 from tsalsale where orgcode ='2005' and jzdate ='2013-10-09' and saleno=plu.saleno)
+group by saleno
+ union all
+select saleno, 0 as sale, 0 as plu, sum(sstotal) as pay
+from tsalsalepay pay
+where orgcode ='2005' and trantype='1' 
+and exists(select 1 from tsalsale where orgcode ='2005' and jzdate ='2013-10-09' and saleno=pay.saleno)
+group by saleno ) T
+group by saleno
+--having sum(sale)<>sum(plu)
+having sum(sale)<>sum(pay)
+
+2.检查是否有未调流水
+
+select * from tsalwtzpludetail M 
+where not exists (select 1 from tskupluex where orgcode=M.orgcode and pluid=M.pluid) and orgcode='1002'
+
+3.检查是否有异常流水
+
+select * from tsysrsaleerr where orgcode='2009';
+select * from tsysrsalepluerr where orgcode='2009';
+select * from tsysrsalepludscerr where orgcode='2009';
+select * from tsysrsalepayerr where orgcode='2009';

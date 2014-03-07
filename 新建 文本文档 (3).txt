@@ -1,0 +1,21 @@
+select * from tOrgManage
+
+select * from tOrgDept
+
+select * from tComDataBase
+
+select * from tusruser 
+
+delete tComDataBase where dbname like 'posdb%'
+
+update tcomdatabase set isself = '0' where dbid='1001'
+update tcomdatabase set isself = '1' where dbid='1001'
+
+update tcomdatabase set dbsvrname = 'orcl' where dbid='1001'
+
+update tcomdatabase set dbname = 'hscmp' where dbid='1001'
+
+update tcomdatabase set dbpassword = 'hscmp' where dbid='1001'
+
+select * from vUsrUserRightFunc where usercode = '0031'
+order by isaccess

@@ -1,0 +1,6 @@
+SELECT * FROM tSalSale WHERE PosNo = '0002'
+
+UPDATE tSalSale SET XsDate = DATEADD (MONTH,27,XsDate)
+WHERE PosNo = '0002'
+UPDATE tSalSale SET XsDate = DATEADD (DAY,10,XsDate)
+WHERE PosNo = '0002'

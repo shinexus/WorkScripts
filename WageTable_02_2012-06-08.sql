@@ -1,0 +1,3 @@
+
+
+SELECT [OrgCode] AS '组织编码',[PosNo] AS '收款机号',[UserCode] AS '用户编码',[CshName] AS '收银员姓名',[LrDate] AS '录入日期',[JzDate] AS '结账日期',SUM([YHandTotal]) AS '应交金额',SUM([SHandTotal]) AS '实交金额',SUM(abs([YHandTotal]-[SHandTotal])) AS '差额绝对值',IIF(1>0,null,null) AS '超标金额' FROM [posdb1002].[dbo].[tCvsHandCash] WHERE JzDate BETWEEN '2012-06-07' AND '2012-06-07' GROUP BY OrgCode,PosNo,CshName,LrDate,JzDate,UserCode ORDER BY JzDate

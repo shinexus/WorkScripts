@@ -1,0 +1,30 @@
+select * from tjkPosjzdate
+
+select distinct posno from tsalsale
+where jzdate ='2011-04-07'
+
+192.168.3.231
+192.168.3.59
+
+update tsalsale
+set jzdate ='2011-04-06'
+where jzdate ='2011-04-07'
+select * from tsalsale where trantype ='5'
+
+    
+
+pos»ú
+
+
+
+select * from tJkposjzdate
+
+update tJkPosJzDate 
+set jzdate = '2011-04-06', LastJzDate='2011-04-05'
+
+select * from tsalsale
+where jzdate = '2011-04-06'
+
+update tsalsale
+set jzdate ='2011-04-06'
+where jzdate ='2011-04-07'

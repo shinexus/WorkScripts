@@ -1,0 +1,2 @@
+SELECT * FROM tSalSale WHERE OrgCode = '1002' AND PosNo='0009' AND JzDate = '2012-04-07'
+UPDATE tSalSale SET JzDate = '2012-04-06' WHERE OrgCode = '1002' AND PosNo='0009' AND JzDate = '2012-04-07'

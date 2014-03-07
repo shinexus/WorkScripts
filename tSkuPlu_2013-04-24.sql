@@ -1,0 +1,1 @@
+SELECT * FROM tSkuPlu WHERE ywstatus = '1' ORDER BY PluCode

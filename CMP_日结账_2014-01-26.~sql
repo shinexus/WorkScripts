@@ -1,0 +1,2 @@
+SELECT * FROM tSysGatherLockOrg;
+SELECT * FROM tSysOverShopLog WHERE OrgCode = '1001' ORDER BY RptDate DESC;
