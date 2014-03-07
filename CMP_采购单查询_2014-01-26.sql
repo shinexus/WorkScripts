@@ -37,3 +37,11 @@ SELECT * FROM tCntContract WHERE HtCode = '9990523305';
 select cntid from tordcghead where billno = '1001201401160268'
 /** 合同报价单明细表
 SELECT * FROM tCntCxBody WHERE PluCode = '500101004';
+**/
+
+
+/**** 采购单主表  ****/
+SELECT * FROM tOrdCgHead WHERE BillNo = '1001201403070221';
+
+/**** 更新越库采购单到货有效日期 ****/
+UPDATE tOrdCgHead SET YxDate = '2014-03-14' WHERE BillNo = '1001201403070221';

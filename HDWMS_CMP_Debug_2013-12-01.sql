@@ -21,7 +21,7 @@ SELECT * FROM tsysywtype ORDER BY YwType;
 ***************************************/
 SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-03-06' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520000003%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSTH201401250084' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = 'WMS11401060008' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
@@ -29,6 +29,10 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
 /****  YwType=2004；YwName=配送退货接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '2004' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '2004' AND DataKey LIKE '%PSTH%' ORDER BY LogTime DESC;
+
+/****  YwType=0905；YwName=采购验收结果接收  ****/
+SELECT * FROM IO_HscmpLog WHERE YwType = '0905' ORDER BY LogTime DESC;
+--DELETE FROM IO_HscmpLog WHERE YwType = '0905';
 
 /****  YwType=0914；YwName=采购退货接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '0914' ORDER BY LogTime DESC;
@@ -46,7 +50,7 @@ SELECT * FROM tSysPerDayLog ORDER BY LogTime DESC;
 /**  tStkLsKc 连锁库存表  *********************************/
 SELECT *
 --COUNT(KcCount) --126
-FROM tStkLsKc WHERE OrgCode = '0001' AND CkCode = '02' AND KcCount > '0' ORDER BY KcCount DESC;
+FROM tStkLsKc WHERE OrgCode = '0001' AND CkCode = '01' AND KcCount > '0' ORDER BY KcCount DESC;
 
 SELECT * FROM tStkLsKc WHERE PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '520001012') AND OrgCode = '0001' AND CkCode = '02' AND KcCount > '0' ORDER BY KcCount DESC;
 SELECT * FROM tStkLsKc WHERE PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '520300081') AND OrgCode = '0001' AND CkCode = '02' AND KcCount > '0' ORDER BY KcCount DESC;
