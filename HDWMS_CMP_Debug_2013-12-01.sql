@@ -41,8 +41,7 @@ SELECT * FROM tSysPerDayLog ORDER BY LogTime DESC;
 /******************************************************************************/
 
 /**  tStkLsKc Á¬Ëø¿â´æ±í  *********************************/
-SELECT 
-*
+SELECT *
 --COUNT(KcCount) --126
 FROM tStkLsKc WHERE OrgCode = '0001' AND CkCode = '02' AND KcCount > '0' ORDER BY KcCount DESC;
 
