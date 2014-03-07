@@ -30,6 +30,9 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '2004' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '2004' AND DataKey LIKE '%PSTH%' ORDER BY LogTime DESC;
 
+/****  YwType=0914；YwName=采购退货接收  ****/
+SELECT * FROM IO_HscmpLog WHERE YwType = '0914' ORDER BY LogTime DESC;
+
 /****  YwType=2004；YwName=物流报溢接收;物流报损接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1902' ORDER BY DataKey DESC;
 
