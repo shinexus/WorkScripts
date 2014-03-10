@@ -21,10 +21,17 @@ SELECT * FROM tsysywtype ORDER BY YwType;
 ***************************************/
 SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-03-06' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520000003%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = 'WMS11401060008' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001THYW201402120021' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%[01=>02]%' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%320100128%' ORDER BY LogTime DESC;
+--DELETE FROM IO_HscmpLog WHERE YwType = '1808';
+
+/****  YwType=2003；YwName=配送结果接收  ****/
+SELECT * FROM IO_HscmpLog WHERE YwType = '2003' ORDER BY LogTime DESC;
+--DELETE FROM IO_HscmpLog WHERE YwType = '2003';
 
 /****  YwType=2004；YwName=配送退货接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '2004' ORDER BY LogTime DESC;
@@ -36,6 +43,7 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '0905' ORDER BY LogTime DESC;
 
 /****  YwType=0914；YwName=采购退货接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '0914' ORDER BY LogTime DESC;
+--DELETE FROM IO_HscmpLog WHERE YwType = '0914';
 
 /****  YwType=2004；YwName=物流报溢接收;物流报损接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1902' ORDER BY DataKey DESC;
@@ -74,7 +82,7 @@ DELETE FROM tStkLsKc WHERE PcNo = '1001LSPD201402140029500001' AND OrgCode = '00
 SELECT SUM(JhCount), SUM(ThCount), SUM(xscount), SUM(XsThCount) FROM tStkPc WHERE PluID = '10010000030177' ORDER BY JhDate DESC;
 
 /***tStkLsKcLock 连锁库存锁定表***/
-SELECT * FROM tStkLsKcLock WHERE Orgcode = '0001' AND pluid = (select pluid from tskuplu where plucode = '520000003');
+SELECT * FROM tStkLsKcLock WHERE Orgcode = '0001' AND pluid = (select pluid from tskuplu where plucode = '310100024');
 SELECT * FROM tStkLsKcLock WHERE OrgCode = '0001' AND YwBillNo = '1001PSYW201312180157';
 
 /**  tStkJxcRptSouceYYMM  门店进销存数据源表  *************************************
@@ -82,11 +90,11 @@ SELECT * FROM tStkLsKcLock WHERE OrgCode = '0001' AND YwBillNo = '1001PSYW201312
 /**  DataType = 0  入库  **/
 /**  DataType = 1  出库  **/
 /**  DataType = 2  期末  **/
-SELECT * FROM tStkJxcRptSouce201402;
+SELECT * FROM tStkJxcRptSouce201403;
 
 SELECT SJRS.OrgCode, SJRS.CkCode, SJRS.YwType, SJRS.RptDate, SJRS.RecCount, SJRS.DataType 
-FROM tStkJxcRptSouce201402 SJRS
-WHERE SJRS.OrgCode = '0001' AND SJRS.PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '310001079')
+FROM tStkJxcRptSouce201403 SJRS
+WHERE SJRS.OrgCode = '0001' AND SJRS.PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '310001032')
 ORDER BY RptDate;
 
 /**  退货单主表  ****************************************************************
@@ -104,7 +112,7 @@ WHERE th.BillNo = tb.BillNo
 AND th.YwType = '0912'
 AND th.DataStatus = '9'
 AND th.JzDate IS NULL
-AND th.LrDate >= '2013-11-27' ORDER BY th.LrDate
+AND th.LrDate >= '2013-11-27' ORDER BY th.LrDate;
 
 /**  配送退货单主表  *************************************************************
 ***  YwType = 0911  门店采购退货         *****************************************
@@ -120,7 +128,7 @@ WHERE pth.RefBillNo = th.BillNo
 AND th.TjrCode = '*' AND th.TjrName = '*'
 AND th.LrDate >= '2013-11-27'
 --AND th.BillNo = '1001THYW201312020005'
-ORDER BY th.LrDate
+ORDER BY th.LrDate;
 
 /**  tOrdJhHead  验收单主表  **
 ***
@@ -129,6 +137,6 @@ ORDER BY th.LrDate
 SELECT * FROM tOrdJhHead;
 
 --alter system set processes=200 scope=spfile;
-show parameters processes;
-select count(*) from v$process;
+--show parameters processes;
+--select count(*) from v$process;
 

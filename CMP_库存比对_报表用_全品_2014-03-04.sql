@@ -10,7 +10,7 @@ SELECT SP.PluCode                                                               
   SJRSE.RecCount                                                                                                                                                                                                                         AS EC,
   (DECODE(SJRS.RecCount,NULL,0,SJRS.RecCount) + DECODE(OJHC.JC,NULL,0,OJHC.JC) - DECODE(OTHC.OTC,NULL,0,OTHC.OTC) + DECODE(DTHC.TC,NULL,0,DTHC.TC) - DECODE(DPHC.PC,NULL,0,DPHC.PC) + DECODE(CLPC.YKC,NULL,0,CLPC.YKC)) - SJRSE.RecCount AS "差异"
 FROM
-  (SELECT PluCode, PluID FROM tSkuPlu
+  (SELECT PluCode, PluID FROM tSkuPlu WHERE PluCode = '310001079'
   ) SP,
   (
   /****  tStkJxcRptSouceYYMM  门店进销存数据源表  ****/
@@ -39,7 +39,7 @@ FROM
   WHERE OJH.JzDate BETWEEN '2013-11-27' AND '2014-03-04'
   AND OJH.YwType  = '0905'
   AND OJH.OrgCode = 'ZB'
-  AND OJH.BillNo  = OJB.BillNo
+  AND OJH.BillNo  = OJB.BillNo  
   GROUP BY PluID
   ) OJHC,
   /**** 采购退货 ****/
@@ -49,9 +49,9 @@ FROM
     SUM(OTB.ThCount) AS OTC
   FROM tOrdThHead OTH,
     tOrdThBody OTB
-  WHERE OTH.JzDate BETWEEN '2013-11-27' AND '2014-03-04'
+  WHERE OTH.JzDate BETWEEN '2013-11-27' AND '2014-03-07'
   AND OTH.YwType = '0914'
-  AND OTH.BillNo = OTB.BillNo
+  AND OTH.BillNo = OTB.BillNo  
   GROUP BY PluID
   ) OTHC,
   /**** 配送退货 ****/
@@ -87,7 +87,7 @@ FROM
     tCouLsPdBody CLB
   WHERE CLH.JzDate BETWEEN '2013-11-27' AND '2014-03-04'
   AND CLH.OrgCode = 'ZB'
-  AND CLH.BillNo  = CLB.BillNo
+  AND CLH.BillNo  = CLB.BillNo  
   GROUP BY PluID
   ) CLPC,
   /**** 2014-03-04 期末库存 ****/

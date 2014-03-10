@@ -7,11 +7,16 @@ SELECT * FROM tSysYwType ORDER BY YwType
 ***  YwType = 0913  门店直送退货给供应商  *****************************************
 ***  YwType = 0914  总部采购退货         *****************************************
 *******************************************************************************/
-SELECT * FROM tOrdThHead WHERE BillNo = '1001THYW201401040034';
+SELECT * FROM tOrdThHead WHERE BillNo = '1001THYW201312070045';
 SELECT TjDate, JzDate, DataStatus, IsNeedTjWl, IsZdJPrice FROM tOrdThHead WHERE BillNo = '1001THYW201401270006';
 
+SELECT * FROM tOrdThHead WHERE LrDate >= '2013-11-27'AND YwType = '0914' AND BillNo IN(
+SELECT BillNo FROM tOrdThBody WHERE PluCOde = '310001032');
+
+SELECT * FROM tOrdThBody WHERE PluCode = '310001079' AND BillNo IN (SELECT BillNo FROM tOrdThHead WHERE OrgCode != 'ZB' AND LrDate >= '2013-11-27');
+
 /** 更新退货单仓库
-UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201401270021';
+UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201312070045';
 
 /** 更新单据状态，可以再次记账 *****************************************
 UPDATE tOrdThHead SET TjDate = NULL, JzDate = NULL, DataStatus = '0'
