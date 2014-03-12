@@ -94,7 +94,7 @@ SELECT * FROM tStkJxcRptSouce201403;
 
 SELECT SJRS.OrgCode, SJRS.CkCode, SJRS.YwType, SJRS.RptDate, SJRS.RecCount, SJRS.DataType 
 FROM tStkJxcRptSouce201403 SJRS
-WHERE SJRS.OrgCode = '0001' AND SJRS.PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '310001032')
+WHERE SJRS.OrgCode = '0001' AND SJRS.PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '110402076')
 ORDER BY RptDate;
 
 /**  退货单主表  ****************************************************************
