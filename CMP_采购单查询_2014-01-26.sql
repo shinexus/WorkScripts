@@ -44,4 +44,4 @@ SELECT * FROM tCntCxBody WHERE PluCode = '500101004';
 SELECT * FROM tOrdCgHead WHERE BillNo = '1001201403070221';
 
 /**** 更新越库采购单到货有效日期 ****/
-UPDATE tOrdCgHead SET YxDate = '2014-03-21' WHERE BillNo = '1001201403110237';
+UPDATE tOrdCgHead SET YxDate = '2014-03-25' WHERE BillNo = '1001201403120256';

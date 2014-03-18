@@ -7,7 +7,7 @@ WHERE OYH.JzDate BETWEEN '2014-03-07' AND '2014-03-08' AND OYB.PluCode = '110402
 ORDER BY OYH.JzDate;
 
 /**** 门店商品要货数量_配送数量****/
-SELECT OYH.BillNo, OYB.PsJobNo, DPH.BillNo AS DPH_BillNo, OYH.OrgCode, OYH.JzDate, OYB.PluCode, OYB.QrCount, DPB.SglCount, DPB.PsCount, DPH.JzDate AS DPH_JzDate
+SELECT OYH.BillNo, OYB.PsJobNo, DPH.BillNo AS DPH_BillNo, OYH.OrgCode, OYH.JzDate, OYH.SdDate, OYB.PluCode, OYB.QrCount, DPB.SglCount, DPB.PsCount, DPH.JzDate AS DPH_JzDate
 FROM tOrdYhHead OYH, tOrdYhBody OYB, tDstPsHead DPH, tDstPsBody DPB
 WHERE OYH.OrgCode LIKE '%%' AND OYH.JzDate BETWEEN '2014-03-07' AND '2014-03-08' 
 AND OYB.PluCode = '110402076' 

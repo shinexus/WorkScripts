@@ -21,8 +21,8 @@ select * from wm_mis_talcntcdtl;
 SELECT * from wm_mis_talcntcdtl ORDER BY FSendTime DESC;
 
 --发送定单 
-select * from wm_mis_tstknord; 
-select * from wm_mis_tstknorddtl WHERE FSrcordNum = '1001201401220223'; 
+select * from wm_mis_tstknord@HDWMS; 
+select * from wm_mis_tstknorddtl@HDWMS WHERE FSrcordNum = '1001201403130198'; 
 
 --供应商退货单 
 SELECT * FROM WM_MIS_TVENDORRTN WHERE FSRCNUM = '1001THYW201312210032'; 
@@ -55,8 +55,8 @@ select * from mis_wm_talcntc WHERE Num = 'P1001PSYW201401240022';
 select * from mis_wm_talcntcdtl;
 
 --接收定单 
-select * from mis_wm_tstkinord; 
-select * from mis_wm_tstkinorddtl; 
+select * from mis_wm_tstkinord@HDWMS; 
+select * from mis_wm_tstkinorddtl@HDWMS; 
 SELECT * FROM Mis_Wm_Tordalc; 
 
 --门店退货单 
