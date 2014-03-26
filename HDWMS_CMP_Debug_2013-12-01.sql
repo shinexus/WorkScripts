@@ -19,9 +19,9 @@ SELECT * FROM tsysywtype ORDER BY YwType;
  DELETE FROM IO_HscmpLog;
  DELETE 4,013,696 行已删除，用时357.86秒。
 ***************************************/
-SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-03-13' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-03-25' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520000003%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSYW201312230077' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSYW201403250008' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
