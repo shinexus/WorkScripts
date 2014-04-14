@@ -19,15 +19,17 @@ SELECT * FROM tsysywtype ORDER BY YwType;
  DELETE FROM IO_HscmpLog;
  DELETE 4,013,696 行已删除，用时357.86秒。
 ***************************************/
-SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-03-25' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520000003%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSYW201403250008' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-04-08' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520001069%' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001THYW201404080027' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND DataKey = 'WMS11404080100' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND DataKey LIKE 'WMS1140408%' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%[01=>02]%' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%[02=>01]%' ORDER BY DataKey;
-SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%320100128%' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%520001069%' ORDER BY LogTime DESC;
 --DELETE FROM IO_HscmpLog WHERE YwType = '1808';
 
 /****  YwType=2003；YwName=配送结果接收  ****/
@@ -51,7 +53,7 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '1902' ORDER BY DataKey DESC;
 
 SELECT * FROM IO_tTrgLog ORDER BY LogTime DESC;
 SELECT * FROM IO_tBillTranState WHERE BillNo = '1001THYW201401270006' ORDER BY TjTime DESC;
---DELETE FROM IO_tBillTranState WHERE BillNo = '1001THYW201401270006';
+--DELETE FROM IO_tBillTranState WHERE BillNo = '1001THYW201403290027';
 SELECT * FROM tSysPerDayLog ORDER BY LogTime DESC;
 --SELECT * FROM IO_tDstRtn
 /******************************************************************************/
@@ -93,7 +95,7 @@ SELECT * FROM tStkLsKcLock WHERE OrgCode = '0001' AND YwBillNo = '1001PSYW201312
 /**  DataType = 2  期末  **/
 SELECT * FROM tStkJxcRptSouce201403;
 
-SELECT SJRS.OrgCode, SJRS.CkCode, SJRS.YwType, SJRS.RptDate, SJRS.RecCount, SJRS.DataType 
+SELECT SJRS.OrgCode, SJRS.CkCode, SJRS.YwType,SJRS.DataType, SJRS.RptDate, SJRS.RecCount, SJRS.DataType 
 FROM tStkJxcRptSouce201403 SJRS
 WHERE SJRS.OrgCode = '0001' AND SJRS.PluID = (SELECT PluID FROM tSkuPlu WHERE PluCode = '110402076')
 ORDER BY RptDate;
