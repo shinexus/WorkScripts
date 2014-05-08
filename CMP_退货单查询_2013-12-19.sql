@@ -17,6 +17,7 @@ SELECT * FROM tOrdThBody WHERE PluCode = '310001079' AND BillNo IN (SELECT BillN
 
 /** 更新退货单仓库
 UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201312070045';
+**/
 
 /** 更新单据状态，可以再次记账 *****************************************
 UPDATE tOrdThHead SET TjDate = NULL, JzDate = NULL, DataStatus = '0'
