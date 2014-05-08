@@ -21,7 +21,7 @@ SELECT * FROM tsysywtype ORDER BY YwType;
 ***************************************/
 SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-04-08' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520001069%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001THYW201404080027' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001THYW201404250031' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
@@ -29,7 +29,7 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND DataKey = 'WMS11404080100' O
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND DataKey LIKE 'WMS1140408%' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%[01=>02]%' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%[02=>01]%' ORDER BY DataKey;
-SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%520001069%' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE YwType = '1808' AND LogMeg LIKE '%300001045%' ORDER BY LogTime DESC;
 --DELETE FROM IO_HscmpLog WHERE YwType = '1808';
 
 /****  YwType=2003；YwName=配送结果接收  ****/

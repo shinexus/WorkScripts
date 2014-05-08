@@ -105,3 +105,27 @@ WHERE BillNo = '1001THYW201401270006';
 SELECT * FROM tOrdThHead
 WHERE YwType = '0914' AND JzDate IS NULL AND LrDate BETWEEN '2013-11-27' AND SysDate
 ORDER BY LrDate DESC;
+/*****************************************/
+
+/**** 采购退货接口表主表缺失 ************************************************************************/
+select * from mis_wm_tvendorrtnntc;
+select * from mis_wm_tvendorrtnntcdtl;
+select * from mis_wm_tvendorrtnntc@HDWMS;
+select * from mis_wm_tvendorrtnntcdtl@HDWMS;
+
+/**** 采购退货单重新加入接口主表  ********************************************************************/
+
+insert into MIS_WM_TVENDORRTNNTC(NUM,FVENDOR,FVDRCODE,FRTNDATE,FCLS,FSRC,FWRH,FFILLER,
+           FCREATETIME,FSENDTIME,FSRCORG,FDESTORG,FMEMO)
+    select H.BillNo,456,H.Supcode,H.Lrdate,'退供应商','HSCMP','02',H.Usercode,sysdate,sysdate,
+           'HSCMP','WMS1',null
+      from tOrdThHead H
+     where H.BillNo='1001THYW201405070021' ;     
+     
+ insert into MIS_WM_TVENDORRTNNTCDTL(NUM,LINE,FARTICLE,FARTICLECODE,FQTY,FPRICE,
+            FSENDTIME,FSRCORG,FDESTORG)
+     select H.BillNo,B.Serialno,123,B.PluCode,B.Thcount,B.Hjprice,sysdate,'HSCMP','WMS1'
+       from tOrdThHead H,tOrdThBody B
+     where H.BillNo=B.BillNo and H.BillNo='1001THYW201405070021';      
+       
+ update WM_MIS_TSENDLIST set FSENDTIME=sysdate where FCLS='供应商退货通知单';
