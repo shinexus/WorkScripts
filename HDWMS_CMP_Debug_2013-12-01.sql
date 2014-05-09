@@ -21,7 +21,7 @@ SELECT * FROM tsysywtype ORDER BY YwType;
 ***************************************/
 SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-04-08' ORDER BY LogTime DESC;
 SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520001069%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001THYW201404250031' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSTH201404260015' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;

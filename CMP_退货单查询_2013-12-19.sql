@@ -7,7 +7,7 @@ SELECT * FROM tSysYwType ORDER BY YwType
 ***  YwType = 0913  门店直送退货给供应商  *****************************************
 ***  YwType = 0914  总部采购退货         *****************************************
 *******************************************************************************/
-SELECT * FROM tOrdThHead WHERE BillNo = '1001THYW201403290027';
+SELECT * FROM tOrdThHead WHERE BillNo = '1001THYW201405070021';
 SELECT TjDate, JzDate, DataStatus, IsNeedTjWl, IsZdJPrice FROM tOrdThHead WHERE BillNo = '1001THYW201401270006';
 
 SELECT * FROM tOrdThHead WHERE LrDate >= '2013-11-27'AND YwType = '0914' AND BillNo IN(
@@ -16,7 +16,7 @@ SELECT BillNo FROM tOrdThBody WHERE PluCOde = '310001032');
 SELECT * FROM tOrdThBody WHERE PluCode = '310001079' AND BillNo IN (SELECT BillNo FROM tOrdThHead WHERE OrgCode != 'ZB' AND LrDate >= '2013-11-27');
 
 /** 更新退货单仓库
-UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201312070045';
+UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201405070021';
 **/
 
 /** 更新单据状态，可以再次记账 *****************************************
@@ -114,8 +114,7 @@ select * from mis_wm_tvendorrtnntcdtl;
 select * from mis_wm_tvendorrtnntc@HDWMS;
 select * from mis_wm_tvendorrtnntcdtl@HDWMS;
 
-/**** 采购退货单重新加入接口主表  ********************************************************************/
-
+/**** 采购退货单重新加入接口表主表  ********************************************************************/
 insert into MIS_WM_TVENDORRTNNTC(NUM,FVENDOR,FVDRCODE,FRTNDATE,FCLS,FSRC,FWRH,FFILLER,
            FCREATETIME,FSENDTIME,FSRCORG,FDESTORG,FMEMO)
     select H.BillNo,456,H.Supcode,H.Lrdate,'退供应商','HSCMP','02',H.Usercode,sysdate,sysdate,
@@ -130,3 +129,27 @@ insert into MIS_WM_TVENDORRTNNTC(NUM,FVENDOR,FVDRCODE,FRTNDATE,FCLS,FSRC,FWRH,FF
      where H.BillNo=B.BillNo and H.BillNo='1001THYW201405070021';      
        
  update WM_MIS_TSENDLIST set FSENDTIME=sysdate where FCLS='供应商退货通知单';
+/************************************************************************************************/
+/**** 配送退货接口表主表缺失 ***********************************************************************/
+select * from mis_wm_tstorertnntc;
+select * from mis_wm_tstorertnntc@HDWMS WHERE Num = '1001PSTH201404260015';
+select * from mis_wm_tstorertnntcdtl;
+select * from mis_wm_tstorertnntcdtl@HDWMS WHERE Num = '1001PSTH201404260015';
+/************************************************************************************************/
+/**** 配送退货单重新加入接口表主表 ******************************************************************/
+insert into MIS_WM_TSTORERTNNTC(NUM,FSTORECODE,FRTNDATE,FSRC,FFILLER,FWRH,FCREATETIME,
+           FSENDTIME,FCASEBARCODE,FRTNREASON,FSRCORG,FDESTORG,FMEMO)
+    select H.BillNo,H.ORGCODE,H.Lrdate,'HSCMP',H.Usercode,'02',sysdate,sysdate,null,null,
+           'HSCMP','WMS1',null
+      from tDstRtnHead H
+     where H.BillNo='1001PSTH201404280001';
+     
+    insert into MIS_WM_TSTORERTNNTCDTL(Num,LINE,FARTICLE,FARTICLECODE,FQTY,FPRICE,FVENDOR,FVENDORCODE,
+                 FSENDTIME,FRTNREASON,FSRCORG,FDESTORG,FALCNTC)
+     select H.BillNo,B.SerialNo,123,B.Plucode,B.Thcount,B.Thprice,0,'0',sysdate,null,'HSCMP','WMS1',null
+       from tDstRtnHead H,tDstRtnBody B
+     where H.BillNo=B.BillNo and H.BillNo='1001PSTH201404280001';
+          
+    update WM_MIS_TSENDLIST set FSENDTIME=sysdate where FCLS='门店退货通知单';
+/************************************************************************************************/
+

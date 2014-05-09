@@ -66,8 +66,10 @@ select * from mis_wm_tstkinorddtl@HDWMS;
 SELECT * FROM Mis_Wm_Tordalc; 
 
 --门店退货单 
-select * from mis_wm_tstorertnntc@HDWMS;
+select * from mis_wm_tstorertnntc;
+select * from mis_wm_tstorertnntc@HDWMS WHERE Num = '1001PSTH201404260015';
 select * from mis_wm_tstorertnntcdtl;
+select * from mis_wm_tstorertnntcdtl@HDWMS WHERE Num = '1001PSTH201404260015';
 
 --供应商退货单 
 select * from mis_wm_tvendorrtnntc@HDWMS;
