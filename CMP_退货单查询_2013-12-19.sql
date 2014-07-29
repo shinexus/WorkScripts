@@ -16,7 +16,7 @@ SELECT BillNo FROM tOrdThBody WHERE PluCOde = '310001032');
 SELECT * FROM tOrdThBody WHERE PluCode = '310001079' AND BillNo IN (SELECT BillNo FROM tOrdThHead WHERE OrgCode != 'ZB' AND LrDate >= '2013-11-27');
 
 /** 更新退货单仓库
-UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201405070021';
+UPDATE tOrdThHead SET CkCode = '02', CkName = '不良品仓' WHERE BillNo = '1001THYW201406100007';
 **/
 
 /** 更新单据状态，可以再次记账 *****************************************
@@ -111,6 +111,8 @@ ORDER BY LrDate DESC;
 /**** 采购退货接口表主表缺失 ************************************************************************/
 select * from mis_wm_tvendorrtnntc;
 select * from mis_wm_tvendorrtnntcdtl;
+--UPDATE mis_wm_tvendorrtnntcdtl SET LINE = '1' WHERE NUM = '1001THYW201405100063';
+
 select * from mis_wm_tvendorrtnntc@HDWMS;
 select * from mis_wm_tvendorrtnntcdtl@HDWMS;
 
@@ -130,6 +132,8 @@ insert into MIS_WM_TVENDORRTNNTC(NUM,FVENDOR,FVDRCODE,FRTNDATE,FCLS,FSRC,FWRH,FF
        
  update WM_MIS_TSENDLIST set FSENDTIME=sysdate where FCLS='供应商退货通知单';
 /************************************************************************************************/
+
+
 /**** 配送退货接口表主表缺失 ***********************************************************************/
 select * from mis_wm_tstorertnntc;
 select * from mis_wm_tstorertnntc@HDWMS WHERE Num = '1001PSTH201404260015';

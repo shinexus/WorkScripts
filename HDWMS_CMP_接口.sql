@@ -58,6 +58,7 @@ WHERE FsrcNum = '1001THYW201401020046'
 ---HSCMP_WMS------ 
 --接收配货单
 select * from mis_wm_talcntc WHERE Num = 'P1001PSYW201401240022';
+select * from mis_wm_talcntc@HDWMS;
 select * from mis_wm_talcntcdtl;
 
 --接收定单 
@@ -96,3 +97,18 @@ SELECT * FROM MIS_WM_TCLIENT;
 --接收供应商 
 SELECT * FROM MIS_WM_TVENDOR; 
 /**********************************/
+
+/**** 接口表中包含越库商品的遗留单据 ****/
+select substr(a.fsrcnum, 2, 21) as "单据号",
+       a.farticlecode as "商品编码",
+       b.pluname as "商品名称",
+       a.fqty as "配送数量"
+  from wm_mis_talcntcdtl a, tskuplu b
+ where a.farticlecode = b.plucode
+   and a.farticlecode in
+       (select plucode
+          from tskuplu
+         where pluid in (select distinct pluid
+                           from tDstPluPsControl
+                          where DstType = '2'))
+                          ORDER BY "单据号" DESC;

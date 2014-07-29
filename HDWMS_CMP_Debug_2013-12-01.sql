@@ -20,8 +20,8 @@ SELECT * FROM tsysywtype ORDER BY YwType;
  DELETE 4,013,696 行已删除，用时357.86秒。
 ***************************************/
 SELECT * FROM IO_HscmpLog WHERE LogTime >= '2014-04-08' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%520001069%' ORDER BY LogTime DESC;
-SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSTH201404260015' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE LogMeg  LIKE '%320700008%' ORDER BY LogTime DESC;
+SELECT * FROM IO_HscmpLog WHERE DataKey = '1001PSYW201407220190' ORDER BY LogTime DESC;
 
 /****  YwType=1808；YwName=移库结果接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1808' ORDER BY LogTime DESC;
@@ -51,12 +51,13 @@ SELECT * FROM IO_HscmpLog WHERE YwType = '0914' ORDER BY LogTime DESC;
 /****  YwType=2004；YwName=物流报溢接收;物流报损接收  ****/
 SELECT * FROM IO_HscmpLog WHERE YwType = '1902' ORDER BY DataKey DESC;
 
+/**** 其他日志 ******************************************************************************/
 SELECT * FROM IO_tTrgLog ORDER BY LogTime DESC;
-SELECT * FROM IO_tBillTranState WHERE BillNo = '1001THYW201401270006' ORDER BY TjTime DESC;
---DELETE FROM IO_tBillTranState WHERE BillNo = '1001THYW201403290027';
+SELECT * FROM IO_tBillTranState WHERE BillNo = '1001PSYW201401020004' ORDER BY TjTime DESC;
+--DELETE FROM IO_tBillTranState WHERE BillNo = '1001PSYW201401020004';
 SELECT * FROM tSysPerDayLog ORDER BY LogTime DESC;
---SELECT * FROM IO_tDstRtn
-/******************************************************************************/
+
+/*******************************************************************************************/
 
 /**  tStkLsKc 连锁库存表  *********************************/
 SELECT *
@@ -143,3 +144,17 @@ SELECT * FROM tOrdJhHead;
 --show parameters processes;
 --select count(*) from v$process;
 
+SELECT * FROM tDstPluPsControl WHERE DSTType = '2';
+/**** 38527 ****/
+SELECT COUNT(*) FROM tDstPluPsControl WHERE DSTType = '2';
+/**** 1155 ****/
+SELECT COUNT(DISTINCT PluId) FROM tDstPluPsControl WHERE DSTType = '2' AND PluId NOT IN (SELECT PluId FROM tSkuPlu WHERE YwStatus = '1');
+SELECT * FROM tDstPluPsControl_Tmp;
+
+SELECT * FROM tSkuPlu WHERE PLUID = '10010000000647';
+
+SELECT * FROM shiduankeliu;
+DELETE FROM shiduankeliu;
+SELECT * FROM shiduankeliu_aaa;
+SELECT * FROM SHOP_NUMBER;
+SELECT COUNT(*) FROM MyEMP;
